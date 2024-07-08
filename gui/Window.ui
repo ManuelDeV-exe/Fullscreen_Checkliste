@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Checkliste</class>
+ <widget class="QMainWindow" name="Checkliste">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Checkliste</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Grundlegende Einstellungen */
+* {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333333;
+}
+
+/* Hauptfenster */
+QMainWindow {
+    background-color: #ffffff;
+}
+
+/* Titel und Überschriften */
+QLabel#title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #52b1b1;
+}
+
+/* Knöpfe */
+QPushButton {
+    background-color: #52b1b1;
+    color: #ffffff;
+    border: 2px solid #52b1b1;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+QPushButton:hover {
+    background-color: #3d8e8e;
+    border-color: #3d8e8e;
+}
+
+QPushButton:pressed {
+    background-color: #296666;
+    border-color: #296666;
+}
+
+QPushButton:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    color: #666666;
+}
+
+/* Eingabefelder */
+QLineEdit, QTextEdit {
+    border: 2px solid #52b1b1;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QLineEdit:focus, QTextEdit:focus {
+    border-color: #3d8e8e;
+}
+
+/* Combobox */
+QComboBox {
+    border: 2px solid #52b1b1;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: #52b1b1;
+    border-left-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+    image: url(down_arrow.png); /* Ersetzen Sie dies durch den Pfad zu Ihrem Pfeilsymbol */
+}
+
+/* Tabellen */
+QTableWidget {
+    border: 2px solid #52b1b1;
+    border-radius: 5px;
+}
+
+QHeaderView::section {
+    background-color: #52b1b1;
+    color: #ffffff;
+    padding: 4px;
+    border: 1px solid #dddddd;
+}
+
+QTableWidget::item {
+    padding: 5px;
+    border: 1px solid #dddddd;
+}
+
+QTableWidget::item:selected {
+    background-color: #3d8e8e;
+    color: #ffffff;
+}
+
+/* Scrollbars */
+QScrollBar:vertical {
+    border: 1px solid #dddddd;
+    background: #f0f0f0;
+    width: 15px;
+    margin: 18px 0 18px 0;
+}
+
+QScrollBar::handle:vertical {
+    background: #52b1b1;
+    min-height: 20px;
+    border-radius: 5px;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: 1px solid #dddddd;
+    background: #f0f0f0;
+    height: 14px;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+    image: url(up_arrow.png); /* Ersetzen Sie dies durch den Pfad zu Ihrem Pfeilsymbol */
+}
+
+/* Fortschrittsbalken */
+QProgressBar {
+    border: 2px solid #52b1b1;
+    border-radius: 5px;
+    text-align: center;
+}
+
+QProgressBar::chunk {
+    background-color: #52b1b1;
+    width: 20px;
+}
+
+/* Checkboxen */
+QCheckBox {
+    font-size: 25px;
+    font-weight: bold;
+    spacing: 10px;
+}
+
+QCheckBox::indicator {
+    width: 25px;
+    height: 25px;
+}
+
+QCheckBox::indicator:unchecked {
+    border: 2px solid #52b1b1;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+QCheckBox::indicator:checked {
+ 	content: &quot;✔&quot;;
+    border: 2px solid #52b1b1;
+    border-radius: 5px;
+    background-color: #52b1b1;
+}
+
+QCheckBox::indicator:checked::after {
+    content: &quot;H&quot;;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+
+QCheckBox::indicator:unchecked:hover {
+    border: 2px solid #3d8e8e;
+}
+
+QCheckBox::indicator:checked:hover {
+    background-color: #3d8e8e;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="Haupt_Widgets">
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <layout class="QVBoxLayout" name="HauptWidgets">
+    <item>
+     <layout class="QHBoxLayout" name="LayoutUnterschriften">
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <item alignment="Qt::AlignRight|Qt::AlignVCenter">
+       <widget class="QWidget" name="widget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>72</width>
+           <height>18</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Unterschrift</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>18</y>
+           <width>200</width>
+           <height>32</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignLeft">
+       <widget class="QPushButton" name="BTN_erledigt">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Alles Erledigt</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
