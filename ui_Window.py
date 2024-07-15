@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLayout,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
+import Res_rc
 
 class Ui_Checkliste(object):
     def setupUi(self, Checkliste):
@@ -183,19 +184,17 @@ class Ui_Checkliste(object):
 "}\n"
 "\n"
 "QCheckBox::indicator:checked {\n"
-" 	content: \"\u2714\";\n"
 "    border: 2px solid #52b1b1;\n"
 "    border-radius: 5px;\n"
 "    background-color: #52b1b1;\n"
+"	image: url(:/data/data/hacken.svg);\n"
 "}\n"
 "\n"
 "QCheckBox::indicator:checked::after {\n"
-"    content: \"H\";\n"
 "    color: #ffffff;\n"
 "    font-size: 20px;\n"
 "    font-weight: bold;\n"
 "    text-align: center;\n"
-"    display: block;\n"
 "}\n"
 "\n"
 "QCheckBox::indicator:unchecked:hover {\n"
@@ -204,8 +203,7 @@ class Ui_Checkliste(object):
 "\n"
 "QCheckBox::indicator:checked:hover {\n"
 "    background-color: #3d8e8e;\n"
-"}\n"
-"")
+"}")
         self.Haupt_Widgets = QWidget(Checkliste)
         self.Haupt_Widgets.setObjectName(u"Haupt_Widgets")
         font = QFont()
@@ -214,11 +212,10 @@ class Ui_Checkliste(object):
         self.Haupt_Widgets.setFont(font)
         self.HauptWidgets = QVBoxLayout(self.Haupt_Widgets)
         self.HauptWidgets.setObjectName(u"HauptWidgets")
-        self.LayoutUnterschriften = QHBoxLayout()
-        self.LayoutUnterschriften.setSpacing(10)
-        self.LayoutUnterschriften.setObjectName(u"LayoutUnterschriften")
-        self.LayoutUnterschriften.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.LayoutUnterschriften.setContentsMargins(0, -1, 0, -1)
+        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.HauptWidgets.addItem(self.verticalSpacer)
+
         self.widget = QWidget(self.Haupt_Widgets)
         self.widget.setObjectName(u"widget")
         self.widget.setMinimumSize(QSize(200, 50))
@@ -232,7 +229,7 @@ class Ui_Checkliste(object):
         self.lineEdit.setMinimumSize(QSize(200, 0))
         self.lineEdit.setMaximumSize(QSize(200, 16777215))
 
-        self.LayoutUnterschriften.addWidget(self.widget, 0, Qt.AlignRight|Qt.AlignVCenter)
+        self.HauptWidgets.addWidget(self.widget)
 
         self.BTN_erledigt = QPushButton(self.Haupt_Widgets)
         self.BTN_erledigt.setObjectName(u"BTN_erledigt")
@@ -241,10 +238,7 @@ class Ui_Checkliste(object):
         self.BTN_erledigt.setFont(font)
         self.BTN_erledigt.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.LayoutUnterschriften.addWidget(self.BTN_erledigt, 0, Qt.AlignLeft)
-
-
-        self.HauptWidgets.addLayout(self.LayoutUnterschriften)
+        self.HauptWidgets.addWidget(self.BTN_erledigt)
 
         Checkliste.setCentralWidget(self.Haupt_Widgets)
 

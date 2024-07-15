@@ -1,13 +1,27 @@
 import sys
 import os
+from screeninfo import get_monitors
 
 import PySide6
 from PySide6.QtGui import *
+from PySide6.QtCore import *
 from PySide6.QtWidgets import *
 
 logo_Pfad = os.path.abspath(r'data/icon.png')
 global config_file
-config_file = os.path.abspath(r'config.cfg')
+
+try: config = sys.argv[1]
+except: config = ""
+
+if ".cfg" in config:
+    config_file = os.path.abspath(sys.argv[1])
+else:
+    config_file = os.path.abspath(r'config.cfg')
+
+global MONITORE
+MONITORE = []
+for m in get_monitors():
+    MONITORE.append(m)
 
 from ui_Window import Ui_Checkliste
 
@@ -24,13 +38,21 @@ class UICheckliste(QMainWindow):
         self.add_checkbox_elements()
 
         self.ui.HauptWidgets.setAlignment(Qt.AlignCenter)
-        self.ui.LayoutUnterschriften.setAlignment(Qt.AlignCenter)
 
         self.ui.BTN_erledigt.clicked.connect(self.check)
 
-        self.showFullScreen()
+
+        MONI_width = 420
+        MONI_heigth = 450
+        posx = (MONITORE[0].width - MONI_width)
+        posy = (MONITORE[0].height - MONI_heigth)
+        self.resize(MONI_width, MONI_heigth)
+        self.move(posx, posy-40)
+
+        self.show()
 
     def check(self):
+        if self.ui.lineEdit.text() == "": return
         self.close()
 
     def read_config(self):
@@ -40,9 +62,10 @@ class UICheckliste(QMainWindow):
     
     def add_checkbox_elements(self):
         lines = self.read_config()
-        for line in lines:
+        for line in reversed(lines):
             self.checkbox = QCheckBox(line)
-            self.ui.HauptWidgets.insertWidget(self.ui.HauptWidgets.count() - 1, self.checkbox)
+            self.checkbox.setCursor(Qt.PointingHandCursor)
+            self.ui.HauptWidgets.insertWidget(0, self.checkbox)
 
 
 
